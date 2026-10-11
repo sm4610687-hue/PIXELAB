@@ -1,0 +1,397 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Pixelab - Professional Image Editor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "inverse-primary": "#d5c1cd",
+                "rose-gold": "#d4af37",
+                "tertiary-fixed-dim": "#e9bbc4",
+                "surface-variant": "#fbdae3",
+                "error-container": "#ffdad6",
+                "surface-bright": "#fff8f8",
+                "surface-dim": "#f3d2da",
+                "on-tertiary-container": "#866069",
+                "on-tertiary-fixed-variant": "#5f3d45",
+                "primary": "#695a64",
+                "tertiary-fixed": "#ffd9e0",
+                "secondary-fixed": "#e7e2d8",
+                "on-error-container": "#93000a",
+                "background": "#fff8f8",
+                "ribbon-pink": "#f472b6",
+                "on-primary": "#ffffff",
+                "inverse-surface": "#3f2b31",
+                "surface-container": "#ffe8ed",
+                "on-error": "#ffffff",
+                "surface-tint": "#695a64",
+                "on-primary-fixed-variant": "#51434c",
+                "on-tertiary": "#ffffff",
+                "on-tertiary-fixed": "#2e131a",
+                "secondary": "#615e57",
+                "surface": "#fff8f8",
+                "tertiary-container": "#ffe7ea",
+                "inverse-on-surface": "#ffecf0",
+                "on-secondary-fixed": "#1d1c16",
+                "on-surface": "#29161d",
+                "soft-blush": "#fdf2f8",
+                "secondary-fixed-dim": "#cac6bd",
+                "on-secondary-fixed-variant": "#494740",
+                "on-surface-variant": "#4c4549",
+                "secondary-container": "#e7e2d8",
+                "primary-fixed-dim": "#d5c1cd",
+                "outline": "#7d7579",
+                "surface-container-highest": "#fbdae3",
+                "primary-fixed": "#f1dde9",
+                "on-primary-fixed": "#231820",
+                "pearl-white": "#ffffff",
+                "on-background": "#29161d",
+                "on-primary-container": "#766670",
+                "error": "#ba1a1a",
+                "outline-variant": "#cfc4c9",
+                "surface-container-high": "#ffe1e8",
+                "on-secondary-container": "#67645d",
+                "on-secondary": "#ffffff",
+                "primary-container": "#fce7f3",
+                "surface-container-lowest": "#ffffff",
+                "tertiary": "#79545c",
+                "surface-container-low": "#fff0f3"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.5rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "gutter": "24px",
+                "margin": "32px",
+                "container-padding": "20px",
+                "unit": "4px"
+        },
+        "fontFamily": {
+                "body-base": [
+                        "Plus Jakarta Sans"
+                ],
+                "label-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-md": [
+                        "Playfair Display"
+                ],
+                "display-lg-mobile": [
+                        "Playfair Display"
+                ],
+                "display-lg": [
+                        "Playfair Display"
+                ],
+                "quote-italic": [
+                        "Playfair Display"
+                ]
+        },
+        "fontSize": {
+                "body-base": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.04em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "700"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "quote-italic": [
+                        "20px",
+                        {
+                                "lineHeight": "1.4",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        /* Custom scrollbar for subtle appearance in panels */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cfc4c9; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7d7579;
+        }
+        
+        /* High-precision slider styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            background: #695a64;
+            cursor: pointer;
+            margin-top: -5px; 
+            box-shadow: 0 0 8px rgba(244, 114, 182, 0.4); /* Glow effect */
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 2px;
+            cursor: pointer;
+            background: #fbdae3; /* surface-variant */
+            border-radius: 1px;
+        }
+        input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #cfc4c9; /* outline-variant */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-surface to-surface-dim text-on-surface h-screen w-screen overflow-hidden flex flex-col font-body-base antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 flex justify-between items-center h-14 px-container-padding w-full z-50 border-b border-white/40 bg-surface/60 backdrop-blur-xl shadow-sm">
+<div class="flex items-center gap-gutter">
+<h1 class="font-display-lg text-[28px] font-bold text-primary">Pixelab</h1>
+<nav class="hidden md:flex items-center gap-[8px] ml-8">
+<!-- Using active state for 'New Project' contextually as it's an empty state canvas -->
+<button class="font-body-base text-body-base text-primary font-bold border-b-2 border-primary pb-1 active:scale-95 transition-transform">New Project</button>
+<button class="font-body-base text-body-base text-on-surface-variant font-medium hover:bg-surface-variant/50 transition-colors px-3 py-1.5 rounded-DEFAULT active:scale-95 transition-transform">Open</button>
+<button class="font-body-base text-body-base text-on-surface-variant font-medium hover:bg-surface-variant/50 transition-colors px-3 py-1.5 rounded-DEFAULT active:scale-95 transition-transform">Save</button>
+</nav>
+</div>
+<button class="bg-gradient-to-r from-ribbon-pink to-tertiary text-white px-5 py-1.5 rounded-full font-body-base text-body-base font-medium shadow-[0_4px_15px_rgba(244,114,182,0.3)] hover:opacity-90 active:scale-95 transition-all">Export</button>
+</header>
+<!-- Main Workspace Area -->
+<div class="flex-1 flex overflow-hidden pt-14 pb-8">
+<!-- Left SideNavBar (Tools) -->
+<aside class="fixed left-0 top-14 bottom-0 flex flex-col items-center py-[8px] z-40 h-full w-16 border-r border-white/40 bg-surface/60 backdrop-blur-xl shadow-sm">
+<div class="flex flex-col w-full gap-1">
+<!-- Active Tool -->
+<button class="text-primary bg-primary-container border-l-2 border-primary py-3 w-full flex flex-col items-center justify-center hover:bg-surface-variant/80 active:opacity-80 transition-opacity rounded-r-lg" title="Select">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">near_me</span>
+</button>
+<!-- Inactive Tools -->
+<button class="text-on-surface-variant py-3 w-full flex flex-col items-center justify-center hover:bg-surface-variant/50 active:opacity-80 transition-opacity rounded-r-lg" title="Crop">
+<span class="material-symbols-outlined">crop</span>
+</button>
+<button class="text-on-surface-variant py-3 w-full flex flex-col items-center justify-center hover:bg-surface-variant/50 active:opacity-80 transition-opacity rounded-r-lg" title="Rotate">
+<span class="material-symbols-outlined">rotate_right</span>
+</button>
+<button class="text-on-surface-variant py-3 w-full flex flex-col items-center justify-center hover:bg-surface-variant/50 active:opacity-80 transition-opacity rounded-r-lg" title="Flip">
+<span class="material-symbols-outlined">flip</span>
+</button>
+<div class="w-8 h-[1px] bg-outline-variant/30 my-2 mx-auto"></div>
+<button class="text-on-surface-variant py-3 w-full flex flex-col items-center justify-center hover:bg-surface-variant/50 active:opacity-80 transition-opacity rounded-r-lg" title="Brush">
+<span class="material-symbols-outlined">brush</span>
+</button>
+<button class="text-on-surface-variant py-3 w-full flex flex-col items-center justify-center hover:bg-surface-variant/50 active:opacity-80 transition-opacity rounded-r-lg" title="Eraser">
+<span class="material-symbols-outlined">ink_eraser</span>
+</button>
+<button class="text-on-surface-variant py-3 w-full flex flex-col items-center justify-center hover:bg-surface-variant/50 active:opacity-80 transition-opacity rounded-r-lg" title="Text">
+<span class="material-symbols-outlined">title</span>
+</button>
+<button class="text-on-surface-variant py-3 w-full flex flex-col items-center justify-center hover:bg-surface-variant/50 active:opacity-80 transition-opacity rounded-r-lg" title="Filters">
+<span class="material-symbols-outlined">filter_vintage</span>
+</button>
+</div>
+</aside>
+<!-- Central Canvas -->
+<main class="fixed top-14 bottom-8 left-16 right-[280px] bg-background flex items-center justify-center overflow-hidden z-10"><div class="absolute inset-0 pointer-events-none opacity-10" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23f472b6' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='40' cy='40' r='2.5' fill='%23d4af37' fill-opacity='0.3' stroke='none'/%3E%3Cpath d='M40 37.5 C38.5 32, 41.5 28, 40 24 C38.5 28, 41.5 32, 40 37.5Z'/%3E%3Cpath d='M40 42.5 C38.5 48, 41.5 52, 40 56 C38.5 52, 41.5 48, 40 42.5Z'/%3E%3Cpath d='M37.5 40 C32 38.5, 28 41.5, 24 40 C28 38.5, 32 41.5, 37.5 40Z'/%3E%3Cpath d='M42.5 40 C48 38.5, 52 41.5, 56 40 C52 38.5, 48 41.5, 42.5 40Z'/%3E%3Cpath d='M38.2 38.2 C33.5 34, 30.5 36, 28 33 C32 35, 35 32, 38.2 38.2Z'/%3E%3Cpath d='M41.8 41.8 C46.5 46, 49.5 44, 52 47 C48 45, 45 48, 41.8 41.8Z'/%3E%3Cpath d='M41.8 38.2 C46.5 34, 44 30.5, 47 28 C45 32, 48 35, 41.8 38.2Z'/%3E%3Cpath d='M38.2 41.8 C33.5 46, 36 49.5, 33 52 C35 48, 32 45, 38.2 41.8Z'/%3E%3Cpath d='M5 10 C8 6, 14 8, 12 14 C9 16, 4 13, 5 10Z' stroke='%23f472b6' stroke-width='0.5'/%3E%3Cpath d='M72 70 C75 66, 78 72, 73 75 C69 74, 70 68, 72 70Z' stroke='%23f472b6' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='70' r='1' fill='%23f472b6' fill-opacity='0.4' stroke='none'/%3E%3Ccircle cx='70' cy='10' r='1' fill='%23f472b6' fill-opacity='0.4' stroke='none'/%3E%3C/g%3E%3C/svg%3E&quot;); background-size: 80px 80px;"></div>
+<!-- Subtle Grid Pattern -->
+<div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, #d5c1cd 1px, transparent 0); background-size: 32px 32px;"></div>
+<!-- Empty State Upload Area -->
+<div class="relative z-20 flex flex-col items-center justify-center w-full max-w-lg aspect-video rounded-xl border border-dashed border-outline-variant/50 bg-white/40 backdrop-blur-md shadow-[0_8px_32px_rgba(233,187,196,0.2)] hover:border-ribbon-pink/50 hover:bg-white/60 transition-all duration-300 cursor-pointer group">
+<div class="w-16 h-16 rounded-full bg-primary-container/50 flex items-center justify-center mb-6 group-hover:bg-primary-container group-hover:shadow-[0_0_20px_rgba(244,114,182,0.3)] transition-all">
+<span class="material-symbols-outlined text-4xl text-primary transition-colors">favorite_border</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2 text-center group-hover:text-primary transition-colors">Drag and drop or click to import photo</h2>
+<p class="font-body-base text-[14px] text-on-surface-variant text-center opacity-80">Supports RAW, PSD, PNG, JPG up to 100MB</p>
+<!-- Decorative subtle glow -->
+<div class="absolute -inset-1 rounded-xl bg-gradient-to-r from-ribbon-pink/0 via-ribbon-pink/10 to-tertiary/0 opacity-0 group-hover:opacity-100 blur-xl transition-opacity pointer-events-none"></div>
+</div>
+</main>
+<!-- Right SideNavBar (Adjustments) -->
+<aside class="fixed right-0 top-14 bottom-0 flex flex-col p-container-padding z-40 h-full w-[280px] border-l border-white/40 bg-surface/60 backdrop-blur-2xl shadow-[-4px_0_24px_rgba(233,187,196,0.1)]">
+<!-- Header Section -->
+<div class="mb-6 flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Properties</span>
+<h2 class="font-headline-md text-[20px] font-semibold text-on-surface">Adjustments</h2>
+</div>
+<!-- Scrollable Properties Content -->
+<div class="flex-1 overflow-y-auto pr-2 pb-4 space-y-6">
+<!-- Adjustment Panel Items (Rendered as expandable slider sections) -->
+<!-- Active Adjustent Item -->
+<div class="flex flex-col gap-3 group">
+<div class="flex justify-between items-center text-primary font-bold cursor-pointer active:scale-[0.98] transition-transform">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">light_mode</span>
+<span class="font-body-base text-[14px]">Brightness</span>
+</div>
+<span class="font-label-sm text-label-sm bg-primary-container px-2 py-0.5 rounded text-on-primary-container">12</span>
+</div>
+<div class="px-1">
+<input class="w-full" max="100" min="-100" type="range" value="12">
+</div>
+</div>
+<!-- Inactive Adjustment Items -->
+<div class="flex flex-col gap-3 group opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex justify-between items-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer active:scale-[0.98]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">contrast</span>
+<span class="font-body-base text-[14px]">Contrast</span>
+</div>
+<span class="font-label-sm text-label-sm">0</span>
+</div>
+<div class="px-1">
+<input class="w-full" max="100" min="-100" type="range" value="0">
+</div>
+</div>
+<div class="flex flex-col gap-3 group opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex justify-between items-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer active:scale-[0.98]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">palette</span>
+<span class="font-body-base text-[14px]">Saturation</span>
+</div>
+<span class="font-label-sm text-label-sm">0</span>
+</div>
+<div class="px-1">
+<input class="w-full" max="100" min="-100" type="range" value="0">
+</div>
+</div>
+<div class="flex flex-col gap-3 group opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex justify-between items-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer active:scale-[0.98]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">exposure</span>
+<span class="font-body-base text-[14px]">Exposure</span>
+</div>
+<span class="font-label-sm text-label-sm">0</span>
+</div>
+<div class="px-1">
+<input class="w-full" max="100" min="-100" type="range" value="0">
+</div>
+</div>
+<div class="w-full h-[1px] bg-outline-variant/30 my-2"></div>
+<div class="flex flex-col gap-3 group opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex justify-between items-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer active:scale-[0.98]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">blur_on</span>
+<span class="font-body-base text-[14px]">Blur</span>
+</div>
+<span class="font-label-sm text-label-sm">0</span>
+</div>
+<div class="px-1">
+<input class="w-full" max="100" min="0" type="range" value="0">
+</div>
+</div>
+<div class="flex flex-col gap-3 group opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex justify-between items-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer active:scale-[0.98]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">gradient</span>
+<span class="font-body-base text-[14px]">Grayscale</span>
+</div>
+<span class="font-label-sm text-label-sm">0</span>
+</div>
+<div class="px-1">
+<input class="w-full" max="100" min="0" type="range" value="0">
+</div>
+</div>
+<!-- Presets Grid Context -->
+<div class="mt-6 pt-6 border-t border-outline-variant/30">
+<div class="flex justify-between items-center text-on-surface-variant mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+<span class="font-body-base text-[14px] font-medium">Presets</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<!-- Presets generated as small visual buttons -->
+<button class="h-16 rounded-lg bg-surface-variant/50 border border-white/40 hover:border-ribbon-pink/50 relative overflow-hidden group shadow-sm">
+<div class="absolute inset-0 bg-gradient-to-tr from-surface-dim to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-label-sm text-label-sm text-on-surface absolute bottom-2 left-2 z-10">Film</span>
+</button>
+<button class="h-16 rounded-lg bg-surface-variant/50 border border-white/40 hover:border-ribbon-pink/50 relative overflow-hidden group shadow-sm">
+<div class="absolute inset-0 bg-gradient-to-br from-surface-dim to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-label-sm text-label-sm text-on-surface absolute bottom-2 left-2 z-10">Vivid</span>
+</button>
+<button class="h-16 rounded-lg bg-surface-variant/50 border border-white/40 hover:border-ribbon-pink/50 relative overflow-hidden group shadow-sm">
+<div class="absolute inset-0 bg-gradient-to-bl from-surface-dim to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-label-sm text-label-sm text-on-surface absolute bottom-2 left-2 z-10">Mono</span>
+</button>
+<button class="h-16 rounded-lg bg-surface-variant/50 border border-white/40 hover:border-ribbon-pink/50 relative overflow-hidden group flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary opacity-70 group-hover:opacity-100">add</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Footer -->
+<footer class="fixed bottom-0 left-16 right-[280px] flex justify-between items-center px-gutter z-30 w-auto h-8 border-t border-white/40 bg-surface/60 backdrop-blur-md">
+<div class="flex items-center gap-4">
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all flex items-center gap-1.5 active:scale-95">
+<span class="material-symbols-outlined text-[16px]">undo</span> Undo
+            </button>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all flex items-center gap-1.5 active:scale-95">
+<span class="material-symbols-outlined text-[16px]">redo</span> Redo
+            </button>
+</div>
+<div class="flex items-center gap-3 bg-surface-variant/50 px-3 py-1 rounded-full border border-white/40">
+<button class="material-symbols-outlined text-[16px] text-on-surface-variant hover:text-primary cursor-pointer active:scale-90 transition-transform">remove</button>
+<div class="flex items-center gap-2">
+<input class="w-24" max="500" min="10" type="range" value="100">
+<span class="font-label-sm text-label-sm text-primary w-10 text-right">100%</span>
+</div>
+<button class="material-symbols-outlined text-[16px] text-on-surface-variant hover:text-primary cursor-pointer active:scale-90 transition-transform">add</button>
+<div class="w-[1px] h-3 bg-outline-variant/50 mx-1"></div>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all">Zoom</button>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">
+            Pixelab Engine v2.4
+        </div>
+</footer>
+
+
+</body></html>
